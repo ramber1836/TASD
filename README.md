@@ -22,7 +22,7 @@ The framework overview is as follows:
 
 For more details about our approach, please refer to [this preprint version](https://arxiv.org/pdf/2301.02071.pdf).
 We implement TASD with three deep learning framework: i.e., 
-[PyTorch](), [Tensorflow](), and [PaddlePaddle](https://www.paddlepaddle.org.cn/en). 
+PyTorch, Tensorflow, and [PaddlePaddle](https://www.paddlepaddle.org.cn/en). 
 
 
 ## Installation
