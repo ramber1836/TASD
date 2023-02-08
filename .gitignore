@@ -1,4 +1,11 @@
-data
+data/numericNLG
+data/Totto
+
+models/paddle
+models/pytorch
+models/tf
+
+
 logs
 
 code/paddle/afs
@@ -10,7 +17,5 @@ code/pytorch/*.log
 code/pytorch/src/__pycache__
 
 code/tensorflow/afs
-
-models
 
 .vscode
