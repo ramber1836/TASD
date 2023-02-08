@@ -2,7 +2,6 @@ from tqdm import tqdm
 import torch
 from transformer import AutoTokenizer
 from transformer.models.gpt2.gpt2_tasd import GPT2TASDLMHeadModel
-from gpt2xl import GPT2XL
 from transformer.models.gpt2.gpt2_adapter import GPT2LMHeadModelAdapter
 from transformer.models.bart.modeling_bart import BartTASDLM
 

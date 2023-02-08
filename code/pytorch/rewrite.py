@@ -6,7 +6,6 @@ from generation import generation
 from transformer import GPT2Tokenizer
 from transformer.models.gpt2.gpt2_tasd import GPT2TASDLMHeadModel
 from load_dataset import myDataloader, path2data
-import threading
 import pandas as pd
 
 def rewrite(mode, best_model_idx, args):
