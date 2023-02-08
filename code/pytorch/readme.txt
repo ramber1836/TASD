@@ -1,0 +1,17 @@
+必有的文件结构
+-afs
+ -data
+    -TD_test_gold
+    -TD_test_input
+    -TD_train_gold
+    -TD_train_input
+    -TD_val_gold
+    -TD_val_input
+    -table_test.json
+    -table_train.json
+    -table_val.json
+ -model
+  -medium
+    -gpt2-medium
+  -small
+    -gpt2-small
