@@ -14,7 +14,6 @@ if __name__=="__main__":
     parser.add_argument('--turn', default="first", type=str, help='')
     parser.add_argument('--lr', default=1e-5, type=float, help='')
     parser.add_argument('--data_name', default="numericNLG", type=str, help='')
-    parser.add_argument('--table', default="NT", type=str, help='')
 
     args = parser.parse_args()
     print("Process the data")
@@ -24,20 +23,19 @@ if __name__=="__main__":
 
     tokenizer = AutoTokenizer.from_pretrained("../../models/pytorch/{}/gpt2-{}".format(args.data_name, args.model_size))
     
-    if args.table == "T":
-        if "numericNLG" in args.data_name:
-            train_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_train.json'.format(gold_root_dir)) #[1084*56*24*122], [1084*56*24]
-            val_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_val.json'.format(gold_root_dir))
-            test_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_test.json'.format(gold_root_dir))
-        elif "Totto" in args.data_name:
-            train_chunks_tables = load_Totto_tables(tokenizer, '{}/table_train.json'.format(gold_root_dir)) #[1084*56*24*122], [1084*56*24]
-            val_chunks_tables = load_Totto_tables(tokenizer, '{}/table_val.json'.format(gold_root_dir))
-            test_chunks_tables = load_Totto_tables(tokenizer, '{}/table_test.json'.format(gold_root_dir))
-        else:
-            print("Error")
-        torch.save(train_chunks_tables, '{}/table_train.pth'.format(gold_root_dir))
-        torch.save(val_chunks_tables, '{}/table_val.pth'.format(gold_root_dir))
-        torch.save(test_chunks_tables, '{}/table_test.pth'.format(gold_root_dir))
+    if "numericNLG" in args.data_name:
+        train_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_train.json'.format(gold_root_dir)) #[1084*56*24*122], [1084*56*24]
+        val_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_val.json'.format(gold_root_dir))
+        test_chunks_tables = load_numericNLG_tables(tokenizer, '{}/table_test.json'.format(gold_root_dir))
+    elif "Totto" in args.data_name:
+        train_chunks_tables = load_Totto_tables(tokenizer, '{}/table_train.json'.format(gold_root_dir)) #[1084*56*24*122], [1084*56*24]
+        val_chunks_tables = load_Totto_tables(tokenizer, '{}/table_val.json'.format(gold_root_dir))
+        test_chunks_tables = load_Totto_tables(tokenizer, '{}/table_test.json'.format(gold_root_dir))
+    else:
+        print("Error")
+    torch.save(train_chunks_tables, '{}/table_train.pth'.format(gold_root_dir))
+    torch.save(val_chunks_tables, '{}/table_val.pth'.format(gold_root_dir))
+    torch.save(test_chunks_tables, '{}/table_test.pth'.format(gold_root_dir))
 
 
     if args.turn == "rewrite":

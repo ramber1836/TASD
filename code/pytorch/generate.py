@@ -33,7 +33,6 @@ if __name__=='__main__':
     parser.add_argument('--start_epoch', default=20,type=int, help='')
     parser.add_argument('--end_epoch', default=21,type=int, help='')
     parser.add_argument('--data_name', default="numericNLG",type=str, help='')
-    parser.add_argument('--table', default="NT",type=str, help='')
     parser.add_argument('--model_pt', default="", type=str, help='')
     
     args = parser.parse_args()
@@ -44,7 +43,7 @@ if __name__=='__main__':
     table_data = "../../data/{}/table_{}.pth".format(args.data_name, args.mode)
 
     if args.turn == "rewrite":
-        text_data = "./{}/rewrite/{}_epochs{}_save{}_beam{}_generate{}_lr{}_{}/text_{}.pth".format(root_dir, args.model_size, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr,args.table, args.mode)
+        text_data = "./{}/rewrite/{}_epochs{}_save{}_beam{}_generate{}_lr{}/text_{}.pth".format(root_dir, args.model_size, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr, args.mode)
     else:
         text_data = "../../data/{}/text_{}.pth".format(args.data_name, args.mode)
 
@@ -65,7 +64,7 @@ if __name__=='__main__':
         # 先从val中找到最优的模型id
         best_model_idx = 0
         best_model_score = 0
-        m = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_{}_json".format(root_dir, "val", args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr, args.table), "r") 
+        m = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_json".format(root_dir, "val", args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr), "r") 
         for l in m:
             idx, metric = l.split('\t')
             metric = json.loads(metric)
@@ -78,8 +77,7 @@ if __name__=='__main__':
         if args.mode == "train" and e != int(best_model_idx):
             continue
         print("generate the model-{} text".format(e))
-        model_path = "{}/model/{}/{}/checkpoint_{}_{}_{}_{}/{}".format(root_dir, args.model_size, args.turn, args.epochs, args.save_every, args.lr,args.table, e)
-        # model_path = "{}/model/{}/{}/checkpoint_{}_{}_{}_{}/{}".format(root_dir, args.model_size, args.turn, args.epochs, args.save_every, args.lr,args.table, e)
+        model_path = "{}/model/{}/{}/checkpoint_{}_{}_{}/{}".format(root_dir, args.model_size, args.turn, args.epochs, args.save_every, args.lr, e)
         length = len(token_chunks) // args.cuda_num + 1
         threads = []
         candidates_list = [[]for i in range(args.cuda_num)]
@@ -97,7 +95,7 @@ if __name__=='__main__':
         for candidate in candidates_list:
             candidates = candidates + candidate
 
-        out_path = "./{}/generate/{}/{}/{}/epochs{}_save{}_model{}_beam{}_generate{}_lr{}_{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr, args.table)
+        out_path = "./{}/generate/{}/{}/{}/epochs{}_save{}_model{}_beam{}_generate{}_lr{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr)
         # out_path = "afs/numericNLG/generate/test/temp_json"
         w = open(out_path, "w")
         for i in candidates:

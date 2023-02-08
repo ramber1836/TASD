@@ -1,12 +1,9 @@
 import argparse
 import os
 from nlgeval import NLGEval
-from nlgeval import compute_metrics
 import json
 import pandas as pd
 import math
-# from bert_score import score
-# from table_text_eval import table_text_eval
 
 def strategy(input_string):
     while len(input_string) > 0 and input_string[0] in ["\n"]:
@@ -47,7 +44,6 @@ if __name__=="__main__":
     parser.add_argument('--model_size', default="medium", type=str, help='')
     parser.add_argument('--turn', default="first", type=str, help='')
     parser.add_argument('--data_name', default="numericNLG", type=str, help='')
-    parser.add_argument('--table', default="NT", type=str, help='')
     parser.add_argument('--lr', default=1e-5, type=float, help='')
     parser.add_argument('--start_epoch', default=20, type=int, help='')
     parser.add_argument('--end_epoch', default=21, type=int, help='')
@@ -65,7 +61,7 @@ if __name__=="__main__":
         os.mkdir("{}/bleu/{}/{}/{}".format(root_dir, args.mode, args.model_size, args.turn))
     if not os.path.exists("{}/bleu/{}/{}/{}/epochs{}_save{}".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every)):
         os.mkdir("{}/bleu/{}/{}/{}/epochs{}_save{}".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every))
-    result = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr, args.table), "w")
+    result = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr), "w")
     print("the bleu result will be written into {}".format(result))
     print("reference_path is {}".format(reference_path))
 
@@ -88,7 +84,7 @@ if __name__=="__main__":
         # 先从val中找到最优的模型id
         best_model_idx = 0
         best_model_score = 0
-        m = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_{}_json".format(root_dir, "val", args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr, args.table), "r") 
+        m = open("./{}/bleu/{}/{}/{}/epochs{}_save{}/beam{}_generate{}_lr{}_json".format(root_dir, "val", args.model_size, args.turn, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr), "r") 
         for l in m:
             idx, metric = l.split('\t')
             metric = json.loads(metric)
@@ -107,7 +103,7 @@ if __name__=="__main__":
     for e in range(args.start_epoch, args.end_epoch, args.save_every):
         if args.mode == "train" and e != int(best_model_idx):
             continue
-        candidate_path = "./{}/generate/{}/{}/{}/epochs{}_save{}_model{}_beam{}_generate{}_lr{}_{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr, args.table)
+        candidate_path = "./{}/generate/{}/{}/{}/epochs{}_save{}_model{}_beam{}_generate{}_lr{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr)
         # candidate_path = "afs/numericNLG/generate/test/temp_json"
         # candidate_path = "./{}/generate/{}/{}/{}/epochs{}_save{}_model{}_beam{}_gengeate{}_lr{}_json".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr)
         with open(candidate_path, "r") as f:
@@ -163,6 +159,6 @@ if __name__=="__main__":
         print(average_metric)
         result.write("{}\t{}\n".format(e, json.dumps(average_metric)))
         result.flush()
-        metrics_csv_path = "./{}/bleu/{}/{}/{}/epochs{}_save{}/model{}_beam{}_generate{}_lr{}_{}.csv".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr, args.table)
+        metrics_csv_path = "./{}/bleu/{}/{}/{}/epochs{}_save{}/model{}_beam{}_generate{}_lr{}.csv".format(root_dir, args.mode, args.model_size, args.turn, args.epochs, args.save_every, e, args.beam_num, args.generate_length, args.lr)
         df = pd.DataFrame(metrics_dict)
         df.to_csv(metrics_csv_path)

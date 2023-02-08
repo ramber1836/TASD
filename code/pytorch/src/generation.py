@@ -2,8 +2,6 @@ from tqdm import tqdm
 import torch
 from transformer import AutoTokenizer
 from transformer.models.gpt2.gpt2_tasd import GPT2TASDLMHeadModel
-from transformer.models.gpt2.gpt2_adapter import GPT2LMHeadModelAdapter
-from transformer.models.bart.modeling_bart import BartTASDLM
 
 def generation(model_path, dataloader, device, args):
     with torch.no_grad():
@@ -18,8 +16,6 @@ def generation(model_path, dataloader, device, args):
         candidates = []
         for semantic_table, numerical_table, text, _ in dataloader: #然而实际上并没有用到numerical的信息
             semantic_table, numerical_table, text = semantic_table.to(device), numerical_table.to(device), text.to(device)
-            if args.table == "NT":
-                semantic_table = None
             start_idx = text.shape[1]
             inputs = {
                 # 'inputs': text[:, :512],
