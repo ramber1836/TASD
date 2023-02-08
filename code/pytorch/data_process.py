@@ -22,7 +22,7 @@ if __name__=="__main__":
 
     gold_root_dir = "../../data/{}".format(args.data_name)
 
-    tokenizer = AutoTokenizer.from_pretrained("afs/{}/model/gpt2-{}".format(args.data_name, args.model_size))
+    tokenizer = AutoTokenizer.from_pretrained("../../models/pytorch/{}/gpt2-{}".format(args.data_name, args.model_size))
     
     if args.table == "T":
         if "numericNLG" in args.data_name:

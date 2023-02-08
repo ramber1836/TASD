@@ -1,11 +1,7 @@
-import json
 import numpy as np
-import tqdm
-import os
 import torch
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-import re
 
 def table_encode(t, tokenizer):
     for i in range(len(t)):

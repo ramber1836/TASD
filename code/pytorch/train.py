@@ -56,7 +56,7 @@ if __name__=='__main__':
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    model_path = "./afs/{}/model/gpt2-{}".format(args.data_name, args.model_size)
+    model_path = "../../models/pytorch/{}/gpt2-{}".format(args.data_name, args.model_size)
 
     checkpoint_path = "{}/model/{}/{}/checkpoint_{}_{}_{}_{}".format(root_dir, args.model_size, args.turn, args.epochs, args.save_every, args.lr, args.table)
 
