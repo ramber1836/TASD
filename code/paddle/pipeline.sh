@@ -1,17 +1,13 @@
 set -o errexit
 
-dataset="Totto"
-
-epochs=1
-every=1
-learning_rate=1e-6
-model_type=gpt2-en
-
-export CUDA_VISIBLE_DEVICES=0
-
-start_epoch=$every-1
-end_epoch=1
-
+dataset=$1
+epochs=$2
+every=$3
+learning_rate=$4
+model_type=$5
+start_epoch=$6
+end_epoch=$7
+export CUDA_VISIBLE_DEVICES=$8
 
 #train
 python gpt2-finetune.py \
@@ -58,7 +54,7 @@ python gpt2-finetune.py \
     --epochs $epochs \
     --every $every \
     --learning_rate $learning_rate \
-    --model_type afs/$dataset/models/$model_type \
+    --model_type ../../models/paddle/$dataset/$model_type \
     --checkpoint_path afs/$dataset/checkpoint/rewrite_${model_type}_${epochs}_${every}_${learning_rate} \
     --table_data_path ../../data/$dataset/tokens_train.pkl \
     --input_data_path afs/$dataset/data/${rewrite_data_path}/TD_train_input \

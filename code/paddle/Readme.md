@@ -5,7 +5,7 @@
 ```powershell
 cd code/paddle
 python preprocess.py numeircNLG
-sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 numericNLG first
+sh pipeline.sh numericNLG 21 3 1e-6 gpt2-en 2 21 0
 ```
 
 # Totto
@@ -13,5 +13,5 @@ sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 numericNLG first
 ```powershell
 cd code/pytorch
 python preprocess.py Totto
-sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 Totto first
+sh pipeline.sh Totto 21 3 1e-6 gpt2-en 2 21 0
 ```
