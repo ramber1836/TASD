@@ -20,7 +20,7 @@ if __name__ == "__main__":
         description='Evaluate fine-tuned GPT-2 on your custom dataset.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--checkpoint_path', default="afs/numericNLG/checkpoint/rewrite_gpt2-en_30_3_1e-6/17", type=str, help='')
-    parser.add_argument('--pickle_file_path', default="afs/numericNLG/data/table_data/tokens_test.pkl", type=str, help='')
+    parser.add_argument('--table_data_path', default="afs/numericNLG/data/table_data/tokens_test.pkl", type=str, help='')
     parser.add_argument('--data_path', default='afs/numericNLG/data/origin/TD_test_input', type=str, help='')
     parser.add_argument('--generate_path', default='afs/numericNLG/generated_result/rewrite_gpt2-en_30_3_1e-6/17/test.out', type=str, help='')
     args = parser.parse_args()
@@ -32,7 +32,8 @@ if __name__ == "__main__":
     tokenizer = GPTTokenizer.from_pretrained(args.checkpoint_path)
     model = GPTForPretraining.from_pretrained(args.checkpoint_path, eol_token_id=tokenizer.eol_token_id)
 
-    test_chunks_tables = pickle.load(open(args.pickle_file_path, "rb"))
+    test_chunks_tables = pickle.load(open(args.table_data_path, "rb"))
+
     pad_token_id = tokenizer.convert_tokens_to_ids("<|endoftext|>")
 
     test_path_list = []

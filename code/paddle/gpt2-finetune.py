@@ -1,20 +1,14 @@
 import paddle
 from modeling_tasd import GPTForPretraining
-#from paddlenlp.transformers.gpt.modeling import GPTForPretraining
 from paddlenlp.transformers.gpt.tokenizer import GPTTokenizer
 import time
 import argparse
 from tqdm import tqdm
-from paddlenlp.data import Dict, Pad
-from paddlenlp.datasets import load_dataset
 import os
 import pickle
-import json
 import os
 import paddle
 import paddle.nn.functional as F
-from paddlenlp.transformers import LinearDecayWithWarmup
-from paddlenlp.transformers.gpt.modeling import GPTPretrainingCriterion
 import numpy as np
 from utils import save_model, attention_mask, mkdir_files
 
@@ -27,7 +21,7 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate', default=1e-6, type=float, help='')
     parser.add_argument('--model_type', default="afs/numericNLG/models/gpt2-en", type=str, help='')
     parser.add_argument('--checkpoint_path', default="afs/numericNLG/checkpoint/rewrite_gpt2-en_30_3_1e-6", type=str, help='')
-    parser.add_argument('--pickle_file_path', default="afs/numericNLG/data/table_data/tokens_train.pkl", type=str, help='')
+    parser.add_argument('--table_data_path', default="afs/numericNLG/data/table_data/table_train.json", type=str, help='')
     parser.add_argument('--input_data_path', default='afs/numericNLG/data/gpt2-en_30_3_1e-6/TD_train_input', type=str, help='')
     parser.add_argument('--gold_data_path', default='afs/numericNLG/data/origin/TD_train_gold', type=str, help='')
     args = parser.parse_args()
@@ -38,10 +32,8 @@ if __name__ == "__main__":
     model = GPTForPretraining.from_pretrained(args.model_type, eol_token_id=tokenizer.eol_token_id)
 
     mkdir_files(args.checkpoint_path)
-
-    pickle_file = open(args.pickle_file_path, "rb")
-    train_chunks_tables = pickle.load(pickle_file)
-    pickle_file.close()
+    
+    train_chunks_tables = pickle.load(open(args.table_data_path, "rb"))
 
     pad_token_id = tokenizer.convert_tokens_to_ids("<|endoftext|>")
 

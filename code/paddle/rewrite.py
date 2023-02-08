@@ -21,7 +21,7 @@ if __name__ == "__main__":
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--checkpoint_path', default="afs/Totto/checkpoint/gpt2-en_30_3_1e-6", type=str, help='')
     parser.add_argument('--evaluated_path', default="afs/Totto/evaluated_result/gpt2-en_30_3_1e-6", type=str, help='')
-    parser.add_argument('--pickle_file_path', default="afs/Totto/data/table_data/tokens_train.pkl", type=str, help='')
+    parser.add_argument('--table_data_path', default="afs/Totto/data/table_data/tokens_train.pkl", type=str, help='')
     parser.add_argument('--data_path', default='afs/Totto/data/origin/TD_train_input', type=str, help='')
     parser.add_argument('--generated_path', default='afs/Totto/data/gpt2-en_30_3_1e-6', type=str, help='')
     args = parser.parse_args()
@@ -44,13 +44,8 @@ if __name__ == "__main__":
     tokenizer = GPTTokenizer.from_pretrained(f"{args.checkpoint_path}/{best_model_id}")
     model = GPTForPretraining.from_pretrained(f"{args.checkpoint_path}/{best_model_id}", eol_token_id=tokenizer.eol_token_id)
 
-    #train_chunks_tables = load_tables(tokenizer, './table_train.json')
-    #test_chunks_tables = load_tables(tokenizer, './table_test.json')
-    #val_chunks_tables = load_tables(tokenizer, './table_val.json')
+    train_chunks_tables = pickle.load(open(args.table_data_path, "rb"))
 
-    pickle_file = open(args.pickle_file_path, "rb")
-    train_chunks_tables = pickle.load(pickle_file)
-    pickle_file.close()
     pad_token_id = tokenizer.convert_tokens_to_ids("<|endoftext|>")
 
     train_path_list = []

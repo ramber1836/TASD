@@ -39,7 +39,7 @@ if __name__=="__main__":
 
 
     if args.turn == "rewrite":
-        input_root_dir = "afs/{}/rewrite/{}_epochs{}_save{}_beam{}_generate{}_lr{}_{}".format(args.data_name, args.model_size, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr, args.table)
+        input_root_dir = "afs/{}/rewrite/{}_epochs{}_save{}_beam{}_generate{}_lr{}".format(args.data_name, args.model_size, args.epochs, args.save_every, args.beam_num, args.generate_length, args.lr)
     else:
         input_root_dir = gold_root_dir
 

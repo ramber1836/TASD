@@ -1,13 +1,16 @@
 data
+logs
 
 code/paddle/afs
 
 code/pytorch/afs
 code/pytorch/.vscode
 code/pytorch/__pycache__
-code/pytorch/logs
+code/pytorch/*.log
 code/pytorch/src/__pycache__
 
 code/tensorflow/afs
 
 models
+
+.vscode

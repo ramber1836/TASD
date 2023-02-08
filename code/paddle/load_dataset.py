@@ -1,7 +1,4 @@
-import glob
 import numpy as np
-import os
-import tqdm
 import json
 
 def table_encode(t, tokenizer, type="", index=-1):
