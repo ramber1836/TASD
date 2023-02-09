@@ -43,7 +43,7 @@ unzip numericNLG.zip
 unzip Totto.zip
 ```
 
-## Loading Pretrained Models
+## Load Pretrained Models
 To download the pretrained models and mofify the config.json in order to fit the TASD.
 ```
 cd models
