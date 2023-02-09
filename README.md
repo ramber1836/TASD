@@ -54,4 +54,34 @@ python pytorch.py
 ## Usage
 
 
+### Paddlepaddle
+For numericNLG:
 
+```
+cd code/paddle
+python preprocess.py numeircNLG
+sh pipeline.sh numericNLG 21 3 1e-6 gpt2-en 2 21 0
+```
+
+For Totto:
+```
+cd code/paddle
+python preprocess.py numeircNLG
+sh pipeline.sh numericNLG 21 3 1e-6 gpt2-en 2 21 0
+
+```
+
+### Pytorch
+For numericNLG:
+```
+cd code/pytorch
+sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 numericNLG first
+
+```
+
+For Totto:
+```
+cd code/pytorch
+sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 Totto first
+
+```
