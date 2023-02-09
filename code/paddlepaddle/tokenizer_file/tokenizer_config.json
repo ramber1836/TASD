@@ -1,0 +1,4 @@
+{
+    "vocab_file": "gpt-en-vocab.json",
+    "merges_file": "gpt-en-merges.txt"
+}
