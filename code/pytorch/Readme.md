@@ -1,6 +1,6 @@
 ## Pipeline
 
-The model of TASD is modified based on the [transformers model](https://huggingface.co/gpt2) on huggingface.
+The model of TASD is modified based on the [Transformer](https://huggingface.co/gpt2) on huggingface.
 
 # numericNLG
 
