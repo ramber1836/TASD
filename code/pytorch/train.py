@@ -28,7 +28,7 @@ if __name__=='__main__':
     parser.add_argument('--beam_num', default=2, type=int, help='')
     parser.add_argument('--generate_length', default=128, type=int, help='')
     parser.add_argument('--cudas', default="0", type=str, help='')
-    parser.add_argument('--data_name', default="Totto", type=str, help='')
+    parser.add_argument('--data_name', default="numericNLG", type=str, help='')
     parser.add_argument('--seed', default=970903, type=int, help='')
     args = parser.parse_args()
     print("Train the model")

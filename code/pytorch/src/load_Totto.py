@@ -20,7 +20,6 @@ def load_Totto_dataset(tokenizer, path_input, path_gold, split=False, encoding="
             if split:
                 text = fp_input_i.readline() + "\n"+ fp_gold_i.readline()
             else:
-                # text = fp_input_i.readline() + "table"
                 text = fp_input_i.readline() + "\n"
             tokens_item = tokenizer(text)['input_ids']
             if split:

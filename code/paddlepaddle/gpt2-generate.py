@@ -1,18 +1,11 @@
 import paddle
 from modeling_tasd import GPTForPretraining
 from paddlenlp.transformers.gpt.tokenizer import GPTTokenizer
-import time
 import argparse
-from paddlenlp.data import Dict, Pad
-from paddlenlp.datasets import load_dataset
 import os
 import pickle
-import numpy as np
 import json
 import os
-import paddle.nn.functional as F
-from paddlenlp.transformers import LinearDecayWithWarmup
-from paddlenlp.transformers.gpt.modeling import GPTPretrainingCriterion
 from utils import encode, mkdir_files
 
 if __name__ == "__main__":
@@ -66,8 +59,8 @@ if __name__ == "__main__":
             eos_token_id=pad_token_id,
             pad_token_id=pad_token_id,
             decode_strategy="beam_search",
-            num_beams=4,
-            num_return_sequences=4,
+            num_beams=2,
+            num_return_sequences=2,
             cache=None
             )
         # print(scores) 

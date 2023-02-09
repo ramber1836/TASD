@@ -13,17 +13,16 @@ year={2022}
 }
 ```
 
-We propose a table-to-text approach, named TASD, with the help of 
-pretrained language model, table structure understanding, and text deliberation. 
+We propose a table-to-text approach, named TASD, with the help of
+pretrained language model, table structure understanding, and text deliberation.
 
 The framework overview is as follows:
 
 ![framework](figs/framework.jpg)
 
 For more details about our approach, please refer to [this preprint version](https://arxiv.org/pdf/2301.02071.pdf).
-We implement TASD with three deep learning framework: i.e., 
-PyTorch, Tensorflow, and [PaddlePaddle](https://www.paddlepaddle.org.cn/en). 
-
+We implement TASD with three deep learning framework: i.e.,
+PyTorch, Tensorflow, and [PaddlePaddle](https://www.paddlepaddle.org.cn/en).
 
 ## Installation
 
@@ -44,7 +43,9 @@ unzip Totto.zip
 ```
 
 ## Load Pretrained Models
+
 To download the pretrained models and mofify the config.json in order to fit the TASD.
+
 ```
 cd models
 python paddle.py
@@ -53,8 +54,8 @@ python pytorch.py
 
 ## Usage
 
-
 ### Paddlepaddle
+
 For numericNLG:
 
 ```
@@ -64,6 +65,7 @@ sh pipeline.sh numericNLG 21 3 1e-6 gpt2-en 2 21 0
 ```
 
 For Totto:
+
 ```
 cd code/paddle
 python preprocess.py numeircNLG
@@ -72,16 +74,19 @@ sh pipeline.sh numericNLG 21 3 1e-6 gpt2-en 2 21 0
 ```
 
 ### Pytorch
+
 For numericNLG:
+
 ```
 cd code/pytorch
-sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 numericNLG first
+sh pipeline.sh 21 3 2 128 medium 1e-5 -1 4 0,1,2,3 4 numericNLG first
 
 ```
 
 For Totto:
+
 ```
 cd code/pytorch
-sh pipeline.sh 21 3 2 128 small 1e-5 -1 4 0,1,2,3 4 Totto first
+sh pipeline.sh 21 3 2 128 medium 1e-5 -1 4 0,1,2,3 4 Totto first
 
 ```

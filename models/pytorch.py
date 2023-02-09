@@ -17,10 +17,10 @@ AutoTokenizer.from_pretrained("gpt2-large").save_pretrained("pytorch/Totto/gpt2-
 
 config_json = {
     "numericNLG":{
-        "n_stx":122,
-      "n_ttx_row":56,
-      "n_ttx_col":24,
-      "num_head":3
+        "n_stx":126,
+        "n_ttx_row":56,
+        "n_ttx_col":24,
+        "num_head":3
     },
     
     "Totto":{
