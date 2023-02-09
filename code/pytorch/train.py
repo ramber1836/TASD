@@ -20,7 +20,7 @@ if __name__=='__main__':
     parser.add_argument('--mask_train', default=False, type=bool, help='')
     parser.add_argument('--epochs', default=1, type=int, help='')
     parser.add_argument('--save_every', default=1, type=int, help='')
-    parser.add_argument('--model_size', default="medium", type=str, help='')
+    parser.add_argument('--model_size', default="small", type=str, help='')
     parser.add_argument('--turn', default="first", type=str, help='')
     parser.add_argument('--lr', default=1e-5, type=float, help='')
     parser.add_argument('--batch_size', default=1, type=int, help='')

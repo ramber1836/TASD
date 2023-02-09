@@ -14,7 +14,7 @@ python gpt2-finetune.py \
     --epochs $epochs \
     --every $every \
     --learning_rate $learning_rate \
-    --model_type ../../models/paddle/$dataset/$model_type \
+    --model_type ../../models/paddlepaddle/$dataset/$model_type \
     --checkpoint_path afs/$dataset/checkpoint/${model_type}_${epochs}_${every}_${learning_rate} \
     --table_data_path ../../data/$dataset/tokens_train.pkl \
     --input_data_path ../../data/$dataset/TD_train_input \
@@ -54,7 +54,7 @@ python gpt2-finetune.py \
     --epochs $epochs \
     --every $every \
     --learning_rate $learning_rate \
-    --model_type ../../models/paddle/$dataset/$model_type \
+    --model_type ../../models/paddlepaddle/$dataset/$model_type \
     --checkpoint_path afs/$dataset/checkpoint/rewrite_${model_type}_${epochs}_${every}_${learning_rate} \
     --table_data_path ../../data/$dataset/tokens_train.pkl \
     --input_data_path afs/$dataset/data/${rewrite_data_path}/TD_train_input \
