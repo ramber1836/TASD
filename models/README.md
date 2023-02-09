@@ -19,7 +19,7 @@
 
 ## Run
 
-To download the pretrained models and mofify the config.json in order to fit the TASD.
+To download the pretrained models and modify the config.json in order to fit the TASD.
 
 ```
 python paddle.py

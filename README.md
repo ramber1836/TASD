@@ -33,6 +33,24 @@ Run the following command to install the required dependencies (for a specific D
 pip install -r {$path_to_certain_framework_folder}/requirements.txt
 ```
 
+## Data
+
+Unzip the data in the folder
+
+```
+cd data
+unzip numericNLG.zip
+unzip Totto.zip
+```
+
+## Loading Pretrained Models
+To download the pretrained models and mofify the config.json in order to fit the TASD.
+```
+cd models
+python paddle.py
+python pytorch.py
+```
+
 ## Usage
 
 
