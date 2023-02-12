@@ -9,19 +9,19 @@ start_epoch=$6
 end_epoch=$7
 export CUDA_VISIBLE_DEVICES=$8
 
-# #train
-# python gpt2-finetune.py \
-#     --epochs $epochs \
-#     --every $every \
-#     --learning_rate $learning_rate \
-#     --model_type ../../models/paddlepaddle/$dataset/$model_type \
-#     --checkpoint_path afs/$dataset/checkpoint/${model_type}_${epochs}_${every}_${learning_rate} \
-#     --table_data_path ../../data/$dataset/tokens_train.pkl \
-#     --input_data_path ../../data/$dataset/TD_train_input \
-#     --gold_data_path ../../data/$dataset/TD_train_gold
+#train
+python gpt2-finetune.py \
+    --epochs $epochs \
+    --every $every \
+    --learning_rate $learning_rate \
+    --model_type ../../models/paddlepaddle/$dataset/$model_type \
+    --checkpoint_path afs/$dataset/checkpoint/${model_type}_${epochs}_${every}_${learning_rate} \
+    --table_data_path ../../data/$dataset/tokens_train.pkl \
+    --input_data_path ../../data/$dataset/TD_train_input \
+    --gold_data_path ../../data/$dataset/TD_train_gold
 
 #evaluate
-for mode in "val" "test" ; do
+for mode in "val"; do
     for (( i=$start_epoch; i<$end_epoch; i+=$every ))
     do
         python gpt2-generate.py \

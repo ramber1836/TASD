@@ -59,8 +59,8 @@ if __name__ == "__main__":
             eos_token_id=pad_token_id,
             pad_token_id=pad_token_id,
             decode_strategy="beam_search",
-            num_beams=2,
-            num_return_sequences=2,
+            num_beams=4,
+            num_return_sequences=4,
             cache=None
             )
         # print(scores) 

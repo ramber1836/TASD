@@ -16,8 +16,8 @@ turn=${12}
 export PYTHONPATH=src
 export CUDA_VISIBLE_DEVICES=4
 
-# # Preprocess the data
-# python data_process.py --model_size $model_size --epochs $epochs --save_every $save_every --beam_num $beam_num --generate_length $generate_length --turn $turn --lr $lr --data_name $data_name
+# Preprocess the data
+python data_process.py --model_size $model_size --epochs $epochs --save_every $save_every --beam_num $beam_num --generate_length $generate_length --turn $turn --lr $lr --data_name $data_name
 
 # Finetune the first turn
 python train.py --epochs $epochs --save_every $save_every --model_size $model_size --turn $turn --lr $lr --length $length --beam_num $beam_num --generate_length $generate_length --cudas $cudas --batch_size ${batch_size} --data_name ${data_name}
